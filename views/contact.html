@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+    <!--../ ca signifie revient vers le parent de page de contact, ici on va dans le dossier qui est au dessus du dossier parent-->
+        <h1>Page de contact</h1>
+       
+        <!-- Le formulaire est le seul moyen de communication et d'interactivite entre le client et le navigateur-->
+        <!-- form a besoin de deux attributs obligatoires, methode specifie la maniere de communication poru envoyer le formulaire sur le serveur (get ou post), l'action c'est l'endroit ou est envoye le formulaire-->
+        <form method="POST" action="">
+            
+            <!-- il existe 23 types differents : il faut l'attribut type et name (name et value), si on met pas de name ca ne s'affiche pas. Le place holder est une indication preremplie-->
+            <!--ici on lie le label avec l'input, ce qui permet en mettant for et id, de mettre le curseur dans l'input quand on clique sur "Prenom" dans le formulaire-->
+            <label for="firstname">Prenom : </label>
+            <input type="text" name ="firstName" id="firstName" placeholder="Votre prenom" autocomplete required><br>
+            <!-- attribut autocomplete: propose ce qui a déjà été enregistré -->
+
+            <label>Mot de passe : </label>
+            <input type="password" name="password" placeholder="Votre mot de passe"><br><br>
+            
+            <!-- le label est une etiquette que je peux donner a tous mes inputs, je n'ai pas le choix d'en mettre pour le type radio et checkbox-->
+            <label>Radio (1 choix):</label><br>
+            <label>Homme</label><input type="radio" value="H" name="gender"><br>
+            <label>Femme</label><input type="radio" value="F" name="gender"><br>
+            <label>Autre</label><input type="radio" value="NC" name="gender"><br><br>
+            
+            <!-- dans radio on ne peut en cocher que un seul par name, mais pour les checkbox, par un meme name on peut en selectionner plusieurs-->
+            <label>Checkbox (choix multiple):</label><br>
+            <label>PS</label><input type="checkbox" value="Playstation" name="console"><br>
+            <label>PC</label><input type="checkbox" Value="Personal computer" name="console"><br>
+            <label>Switch</label><input type="checkbox" value="Nintendo Switch" name="console"><br><br>
+            
+            <!-- select: balise de paire qui prend des balises de paires option qui prend le texte affiche: cree une liste de choix deroulant-->
+            <label>Liste déroulante (1 choix): </label><br>
+            <select name="age">
+                <!-- ici on met un disabled pour faire en sorte que la premiere option vide ne puisse pas etre cochee-->
+                <option disabled></option>
+                <option value="-12">Moins de 12 ans</option>
+                <option value="12-18">Plus de 12 ans et moins de 18 ans</option>
+                <option value="+18">Plus de 12 ans</option>
+            </select><br><br>
+
+             <!-- select avec multiple permet de selectionner plusieurs dans la liste deroulante-->
+            <label>Liste déroulante (choix multiple): </label><br>
+             <select multiple name="tech">
+                <!-- ici on met un disabled pour faire en sorte que la premiere option vide ne puisse pas etre cochee-->
+                <option disabled></option>
+                <option value="HTML">HTML</option>
+                <option value="CSS">CSS</option>
+                <option value="Python">Python</option>
+                <option value="PHP">PHP</option>
+                <option value="C#">C#</option>
+                <option value="Node">Node</option>
+            </select><br><br>
+
+            <label for="email">Email: </label>
+            <input type="email" name="email" id="email" required><br>
+
+            <label for="tel">Téléphone: </label>
+            <input type="tel" name="telephone" id="tel"><br><br>
+
+            <!-- attribut list: liste de suggestion qu'on a définit nous même, mais peut taper ce qu'il veut >< type: list, le user ne peut pas taper ce qu'il veut -->
+            <label>Text avec attribut list qui reprend une liste de suggestion: </label><br>
+            <label for="favB">Browser: </label>
+            <input list="browsers" id="favB" name="favBrowser" type="text"><br>
+            <datalist id="browsers">
+                <option value="Firefox">
+                <option value="Edge">
+                <option value="Google Chrome">
+                <option value="Safari">
+
+                <?php
+                foreach ($datalist as $row) { ?>
+                    <!-- trois façon d'intégrer du php et html
+                    echo "<option value='$row'>"; PREFERABLE
+                    echo "<option value='" .$row. "'>"; -->
+                    <option value="<?= $row ?>">
+                    <?php } ?>
+            </datalist><br>
+            
+            <label>Search: </label><br>
+            <label for="province">Province souhaitée: </label>
+            <input type="search" name="province" id="province"><br><br>
+
+            <label>Number: </label><br>
+            <label for="salaireDemande">Salaire souhaité: </label>
+            <input type="number" name="salaireDemande" id="salaireDemande" required><br><br>
+
+            <label>Date: </label><br>
+            <label for="dateDemande">Date de la demande: </label>
+            <input type="date" name="dateDemande" id="dateDemande"><br><br>
+
+            <label>Time: </label><br>
+            <label for="heureStart">Heure souhaitée pour commencer la journée: </label>
+            <input type="time" name="heureStart" id="heureStart"><br><br>
+
+            <label>Datetime-local: </label><br>
+            <label for="heureDateForm">Date et heure de remplissage du formulaire: </label>
+            <input type="datetime-local" id="heureDateForm" name="heureDateForm"><br><br>
+
+            <label>Month: </label><br>
+            <label for="monthToHire">Mois d'engagement: </label>
+            <input type="month" id="monthToHire" name="monthToHire"><br><br>
+
+            <label>File: </label><br>
+            <label for="identityCard">Carte d'identité: </label>
+            <input type="file" id="identityCard" name="identityCard"><br><br>
+            <!-- va aboutir dans la super globale FILE, pas GET ni POST dans php -->
+
+            <label>Range: </label><br>
+            <label for="prime">Primes salariales: </label>
+            <input type="range" id="prime" name="prime" min="1000" max="2000"><br><br>
+            
+            <!-- sert pour augmenter la sécurité pour eviter de faire du man in the middle attack (de prendre possession du formulaire) / cross site request forgery -->
+            <input type="hidden" id="csrf_token" value="123456789456" name="csrf_token">
+
+            <label>Textarea: </label><br>
+            <label for="message">Votre message: </label><br>
+            <textarea name="message" id="message" rows="5" cols="40" placeholder="Type your message here"></textarea><br><br>
+            
+            <!-- HASBEEN: transforme une image en button, maintenant on utilise des librairies de buttons au lieu de faire ca dans photoshop -->
+            <input type="image" src="https://interactive-examples.mdn.mozilla.net/media/examples/login-button.png" name="sendByimage" id="sendByimage"><br>
+            <input type="reset" value="Effacer"><br>
+
+            <!-- cree un bouton submit, qui n'a pas besoin de name-->
+            <input type="submit" value="Envoyer">
+            <!-- <button type="submit">Envoyer</button> -->
+        </form>
+        <a href="../index.html">Vers l'accueil</a>
+    </body>
+</html>
